@@ -10,6 +10,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import { Link } from "react-router-dom";
 const butonStyle = {
   color: "white",
   backgroundColor: "green",
@@ -264,7 +265,13 @@ const BlogCard = () => {
                 <span>3</span>
               </IconButton>
             </Typography>
-            <Button size="small" sx={butonStyle} variant="contained">
+            <Button
+              size="small"
+              sx={butonStyle}
+              variant="contained"
+              component={Link}
+              to="/detail/1"
+            >
               Read More
             </Button>
           </CardActions>
