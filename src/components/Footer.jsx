@@ -1,11 +1,10 @@
 import * as React from "react";
 import Container from "@mui/material/Container";
-// import Image from "next/image";
-// import Link from "@/src/Link";
+
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import { blueGrey, grey } from "@mui/material/colors";
+
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
@@ -20,14 +19,13 @@ function Footer() {
         position: "fixed",
         bottom: 0,
         width: "100%",
-        backgroundColor: grey["900"],
-        // backgroundColor: "primary",
+        backgroundColor: "primary.main",
+
         color: "white",
       }}
       component="footer"
       square
       variant="outlined"
-      //   color="primary"
     >
       <Container maxWidth="lg">
         <Box
