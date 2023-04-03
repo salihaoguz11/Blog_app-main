@@ -8,9 +8,9 @@ import Paper from "@mui/material/Paper";
 import { blueGrey, grey } from "@mui/material/colors";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import FacebookIcon from "@mui/icons-material/Facebook";
+
 import { IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <Paper
