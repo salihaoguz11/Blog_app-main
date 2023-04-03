@@ -3,6 +3,7 @@ import Dashboard from "../pages/Dashboard";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import About from "../components/About";
+import NewBlog from "../pages/NewBlog";
 const AppRouter = () => {
   return (
     <Router>
@@ -10,6 +11,7 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/about" element={<About />} />
+        <Route path="/new-blog" element={<NewBlog />} />
       </Routes>
       <Footer />
     </Router>
