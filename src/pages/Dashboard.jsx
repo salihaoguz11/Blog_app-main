@@ -1,23 +1,15 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BlogCard from "../components/blog/BlogCard";
-import { fetchStart, getSuccess } from "../features/blogSlice";
+// import { fetchStart, getSuccess } from "../features/blogSlice";
+import useBlogCall from "../hooks/useBlogCalls";
 const Dashboard = () => {
-  const dispatch = useDispatch();
-  const getBlogListData = async () => {
-    dispatch(fetchStart);
-    const URL = "http://32131.fullstack.clarusway.com/api/blogs/";
-    try {
-      const { data } = await axios(`${URL}`);
-      dispatch(getSuccess(data));
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { getBlogData } = useBlogCall();
+  const { blogs } = useSelector((state) => state.blog);
+
   useEffect(() => {
-    getBlogListData();
+    getBlogData("blogs");
   }, []);
 
   return <BlogCard />;
