@@ -10,7 +10,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 const butonStyle = {
   color: "white",
@@ -21,8 +21,13 @@ const butonStyle = {
   },
 };
 const BlogCard = () => {
+  const navigate = useNavigate();
   const { blogsList } = useSelector((state) => state.blog);
   console.log(blogsList);
+  const handleNavigate = (id) => {
+    navigate(`/detail/${id}`);
+  };
+
   return (
     <Grid
       container
@@ -96,8 +101,7 @@ const BlogCard = () => {
                   size="small"
                   sx={butonStyle}
                   variant="contained"
-                  component={Link}
-                  to="/detail/1"
+                  onClick={() => handleNavigate(item?.id)}
                 >
                   Read More
                 </Button>
