@@ -11,7 +11,8 @@ const authSlice = createSlice({
   },
   reducers: {
     fetchStart: (state) => {
-      (state.loading = true), (state.error = false);
+      state.loading = true;
+      state.error = false;
     },
     loginSuccess: (state, { payload }) => {
       state.loading = false;
@@ -24,7 +25,8 @@ const authSlice = createSlice({
       state.token = null;
     },
     registerSuccess: (state, { payload }) => {
-      (state.loading = false), (state.currentUser = payload?.user);
+      state.loading = false;
+      state.currentUser = payload?.user;
       state.error = false;
     },
     fetchFail: (state) => {
