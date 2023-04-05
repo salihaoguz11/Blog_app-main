@@ -7,7 +7,7 @@ const useAxios = () => {
   });
   const axiosWithToken = axios.create({
     baseURL: "http://32131.fullstack.clarusway.com/",
-    header: { Authorization: `Token ${token}` },
+    headers: { Authorization: `Token ${token}` },
   });
   return { axiosPublic, axiosWithToken };
 };
