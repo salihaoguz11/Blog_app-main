@@ -28,27 +28,49 @@ const pages = [
     url: "/about",
   },
 ];
-const settings = ["Login"];
+
+const settings = [
+  {
+    name: "Login",
+    url: "/login",
+  },
+  {
+    name: "Profile",
+    url: "/profile",
+  },
+  {
+    name: "My Blogs",
+    url: "/my-blogs",
+  },
+  {
+    name: "Logout",
+    url: "/",
+  },
+];
+
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -66,6 +88,7 @@ function NavBar() {
           >
             BLOG APP
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -97,13 +120,18 @@ function NavBar() {
             >
               {/* MOBILE MENU ----------------------------------------- */}
               {pages?.map((page, index) => (
-                <MenuItem key={index} onClick={handleCloseNavMenu} component={Link} to={page.url}>
+                <MenuItem
+                  key={index}
+                  onClick={handleCloseNavMenu}
+                  component={Link}
+                  to={page.url}
+                >
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+
           <Typography
             variant="h5"
             noWrap
@@ -120,8 +148,9 @@ function NavBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            BLOG APP
           </Typography>
+
           {/* MENU ---------------------------------- */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages?.map((page, index) => (
@@ -136,6 +165,7 @@ function NavBar() {
               </Button>
             ))}
           </Box>
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -158,9 +188,11 @@ function NavBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {settings.map(({ name, url }) => (
+                <MenuItem key={name} onClick={handleCloseUserMenu}>
+                  <Button component={Link} to={url}>
+                    {name}
+                  </Button>
                 </MenuItem>
               ))}
             </Menu>
