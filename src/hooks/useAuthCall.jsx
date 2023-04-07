@@ -16,7 +16,7 @@ const useAuthCall = () => {
   const BASE_URL = "http://32131.fullstack.clarusway.com/";
   //login----
   const login = async (userInfo) => {
-    dispatchEvent(fetchStart());
+    dispatch(fetchStart());
     try {
       const { data } = await axios.post(
         `${BASE_URL}users/auth/login/`,
