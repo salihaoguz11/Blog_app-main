@@ -37,7 +37,7 @@ const Detail = () => {
         }}
       >
         <Grid item>
-          <Card sx={{ maxWidth: 600 }}>
+          <Card sx={{ maxWidth: 600, p: 3 }}>
             <CardMedia
               sx={{
                 objectFit: "contain",
@@ -59,7 +59,7 @@ const Detail = () => {
                     {details?.author}
                   </Typography>
                   <Typography sx={{ fontSize: "0.9rem", color: "#555" }}>
-                    {details?.publish_date}
+                    {new Date(details.publish_date).toDateString()}
                   </Typography>
                 </Box>
               </Box>

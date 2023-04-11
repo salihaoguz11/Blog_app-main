@@ -8,8 +8,37 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import useBlogCalls from "../../hooks/useBlogCalls";
 
 const BlogForm = () => {
+  const [info, setInfo] = useState({
+    title: "",
+    content: "",
+    image: "",
+    category: 0,
+    status: "p",
+    slug: "",
+  });
+  const { postBlogData } = useBlogCalls();
+  const { categories } = useSelector((state) => state.blog);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInfo({ ...info, [name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    postBlogData("blogs", info);
+    setInfo({
+      title: "",
+      content: "",
+      image: "",
+      category: 0,
+      status: "",
+      slug: "",
+    });
+  };
   return (
     <Box
       sx={{
@@ -19,6 +48,7 @@ const BlogForm = () => {
       }}
       component="form"
       width="100%"
+      onSubmit={handleSubmit}
     >
       <Typography variant="h5" align="left" sx={{ fontWeight: 900 }}>
         New Blog
@@ -30,6 +60,8 @@ const BlogForm = () => {
         id="title"
         type="text"
         variant="outlined"
+        value={info?.title}
+        onChange={handleChange}
         required
       />
       <TextField
@@ -38,6 +70,8 @@ const BlogForm = () => {
         id="img-url"
         type="url"
         variant="outlined"
+        value={info?.image}
+        onChange={handleChange}
         required
       />
 
@@ -46,13 +80,16 @@ const BlogForm = () => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          //value={age}
+          value={info?.category}
           label="Categories"
-          //onChange={handleChange}
+          onChange={handleChange}
         >
-          <MenuItem value={10}>Trivia</MenuItem>
-          <MenuItem value={20}>Travel</MenuItem>
-          <MenuItem value={30}>Web Development</MenuItem>
+          <MenuItem value={10}>Select Category...</MenuItem>
+          {categories?.map((item, index) => (
+            <MenuItem key={index} value={item?.id}>
+              {item?.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
 
@@ -61,13 +98,13 @@ const BlogForm = () => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          //value={age}
+          value={info.status}
           label="Status"
-          //onChange={handleChange}
+          onChange={handleChange}
         >
-          <MenuItem value={10}>Please Chose...</MenuItem>
-          <MenuItem value={20}>Draft</MenuItem>
-          <MenuItem value={30}>Published</MenuItem>
+          <MenuItem value={0}>Please Chose...</MenuItem>
+          <MenuItem value={10}>Draft</MenuItem>
+          <MenuItem value={20}>Published</MenuItem>
         </Select>
       </FormControl>
 
@@ -80,10 +117,14 @@ const BlogForm = () => {
         required
         multiline
         size="medium"
+        // value={item?.content}
+        onChange={handleChange}
         rows={2}
       />
 
-      <Button variant="contained">ADD NEW BLOG</Button>
+      <Button type="submit" variant="contained">
+        ADD NEW BLOG
+      </Button>
     </Box>
   );
 };

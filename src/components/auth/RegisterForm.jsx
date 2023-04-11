@@ -4,10 +4,6 @@ import TextField from "@mui/material/TextField";
 import { Form } from "formik";
 import { useState } from "react";
 import { object, string } from "yup";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import IconButton from "@mui/material/IconButton";
-import { InputAdornment } from "@mui/material";
 
 export const registerSchema = object({
   username: string()
@@ -29,7 +25,13 @@ export const registerSchema = object({
     .matches(/[!,?{}><%&$#£+-.]+/, "Password bir özel karakter içermelidir"),
 });
 
-const SignUpForm = ({ values, handleChange, errors, touched, handleBlur }) => {
+const RegisterForm = ({
+  values,
+  handleChange,
+  errors,
+  touched,
+  handleBlur,
+}) => {
   const [togglePassword, setTogglePassword] = useState(false);
 
   const togglePasswordHide = () => {
@@ -73,9 +75,6 @@ const SignUpForm = ({ values, handleChange, errors, touched, handleBlur }) => {
             variant="outlined"
             value={values.image}
             onChange={handleChange}
-            onBlur={handleBlur}
-            helperText={touched.image && errors.image}
-            error={touched.image && Boolean(errors.image)}
           />
 
           <TextField
@@ -86,9 +85,6 @@ const SignUpForm = ({ values, handleChange, errors, touched, handleBlur }) => {
             variant="outlined"
             value={values.bio}
             onChange={handleChange}
-            onBlur={handleBlur}
-            helperText={touched.bio && errors.bio}
-            error={touched.bio && Boolean(errors.bio)}
           />
 
           <TextField
@@ -102,22 +98,6 @@ const SignUpForm = ({ values, handleChange, errors, touched, handleBlur }) => {
             onBlur={handleBlur}
             helperText={touched.password && errors.password}
             error={touched.password && Boolean(errors.password)}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton>
-                    {togglePassword ? (
-                      <Visibility
-                        className="cursor_pointer"
-                        onClick={togglePasswordHide}
-                      />
-                    ) : (
-                      <VisibilityOff onClick={togglePasswordHide} />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
           />
 
           <Button type="submit" variant="contained" size="large">
@@ -129,4 +109,4 @@ const SignUpForm = ({ values, handleChange, errors, touched, handleBlur }) => {
   );
 };
 
-export default SignUpForm;
+export default RegisterForm;

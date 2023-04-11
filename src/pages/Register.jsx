@@ -58,8 +58,7 @@ const Register = () => {
             component={(props) => <RegisterForm {...props} />}
           ></Formik>
           <Box sx={{ textAlign: "center", mb: 4, p: 5 }}>
-            <span>Already have an account ?</span>
-            <Link to="/login"> Sign in</Link>
+            <Link to="/login"> Do you have an account?</Link>
           </Box>
         </Grid>
       </Grid>
