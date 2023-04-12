@@ -52,6 +52,32 @@ const useBlogCalls = () => {
     }
   };
 
+  //add like
+
+  const AddLike = async (url) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.post(`api/${url}/`);
+
+      getBlogData("blogs");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //add commnet
+  const addComment = async (url, data) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.post(`api/${url}/`, data);
+      getDetailData(`blogs/${data.post}`);
+      toastSuccessNotify("Comment is successfuly added");
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Comment can not be added");
+    }
+  };
+
   //delete blog
   const navigate = useNavigate();
   const deleteBlog = async (url) => {
@@ -69,7 +95,15 @@ const useBlogCalls = () => {
 
   const putBlogData = async (url, id, info) => {};
 
-  return { getBlogData, postBlogData, getDetailData, deleteBlog, putBlogData };
+  return {
+    getBlogData,
+    postBlogData,
+    getDetailData,
+    deleteBlog,
+    putBlogData,
+    addComment,
+    AddLike,
+  };
 };
 
 export default useBlogCalls;

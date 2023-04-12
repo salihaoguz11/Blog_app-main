@@ -8,13 +8,19 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import useBlogCalls from "../../hooks/useBlogCalls";
+import { modalStyle } from "../../styles/globalStyles";
 
-const UpdateModal = () => {
+const UpdateModal = ({ updateOpen, updateClose, update }) => {
+  const { putBlogData } = useBlogCalls();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <Modal
-      open={open}
+      open={update}
       onClose={() => {
-        handleClose();
+        updateClose();
         //setInfo({ title: "", content: "", image: "", category: 0, status:"d" })
       }}
       aria-labelledby="modal-modal-title"
@@ -33,8 +39,8 @@ const UpdateModal = () => {
             type="text"
             variant="outlined"
             required
-            value={info?.title}
-            onChange={handleChange}
+            // value={info?.title}
+            // onChange={handleChange}
           />
           <TextField
             label="Image"
@@ -43,8 +49,8 @@ const UpdateModal = () => {
             type="text"
             variant="outlined"
             required
-            value={info?.image}
-            onChange={handleChange}
+            // value={info?.image}
+            // onChange={handleChange}
           />
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Categories</InputLabel>
@@ -53,16 +59,16 @@ const UpdateModal = () => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               name="category"
-              value={info?.category}
-              label="Categories"
-              onChange={handleChange}
+              // value={info?.category}
+              // label="Categories"
+              // onChange={handleChange}
             >
               <MenuItem value={0}>Select Category</MenuItem>
-              {categories?.map((item, index) => (
+              {/* {categories?.map((item, index) => (
                 <MenuItem key={index} value={item?.id}>
                   {item?.name}
                 </MenuItem>
-              ))}
+              ))} */}
             </Select>
           </FormControl>
 
@@ -73,9 +79,9 @@ const UpdateModal = () => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               name="status"
-              value={info.status}
-              label="Status"
-              nChange={handleChange}
+              // value={info.status}
+              // label="Status"
+              // nChange={handleChange}
             >
               <MenuItem value="0">Please Chose...</MenuItem>
               <MenuItem value="d">Draft</MenuItem>
@@ -92,8 +98,8 @@ const UpdateModal = () => {
             multiline
             rows={2}
             required
-            value={info?.content}
-            onChange={handleChange}
+            // value={info?.content}
+            // onChange={handleChange}
           />
 
           <Button type="submit" variant="contained">
