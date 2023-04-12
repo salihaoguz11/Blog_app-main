@@ -8,11 +8,13 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import { useState } from "react";
 import useBlogCalls from "../../hooks/useBlogCalls";
 import { modalStyle } from "../../styles/globalStyles";
 
 const UpdateModal = ({ updateOpen, updateClose, update }) => {
   const { putBlogData } = useBlogCalls();
+  const [info, setInfo] = useState();
   const handleSubmit = (e) => {
     e.preventDefault();
   };

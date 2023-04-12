@@ -23,6 +23,8 @@ const BlogForm = () => {
   });
   const { postBlogData } = useBlogCalls();
   const { categories } = useSelector((state) => state.blog);
+  console.log(categories);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
@@ -35,7 +37,7 @@ const BlogForm = () => {
       content: "",
       image: "",
       category: 0,
-      status: "",
+      status: "p",
       slug: "",
     });
   };
@@ -66,8 +68,8 @@ const BlogForm = () => {
       />
       <TextField
         label="Image Url"
-        name="img-url"
-        id="img-url"
+        name="image"
+        id="image"
         type="url"
         variant="outlined"
         value={info?.image}
@@ -78,13 +80,15 @@ const BlogForm = () => {
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Categories</InputLabel>
         <Select
+          align="left"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
+          name="category"
           value={info?.category}
           label="Categories"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Select Category...</MenuItem>
+          <MenuItem value={0}>Select Category...</MenuItem>
           {categories?.map((item, index) => (
             <MenuItem key={index} value={item?.id}>
               {item?.name}
@@ -96,15 +100,17 @@ const BlogForm = () => {
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Status</InputLabel>
         <Select
+          align="left"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={info.status}
+          name="status"
           label="Status"
           onChange={handleChange}
         >
-          <MenuItem value={0}>Please Chose...</MenuItem>
-          <MenuItem value={10}>Draft</MenuItem>
-          <MenuItem value={20}>Published</MenuItem>
+          <MenuItem value="p">Please Chose...</MenuItem>
+          <MenuItem value="d">Draft</MenuItem>
+          <MenuItem value="p">Published</MenuItem>
         </Select>
       </FormControl>
 
