@@ -28,6 +28,7 @@ const Detail = () => {
   const { id } = useParams();
   const { getDetailData } = useBlogCalls();
   const { details } = useSelector((state) => state.blog);
+  const { getBlogData } = useBlogCalls();
 
   //modal delete states
   const [open, setOpen] = useState(false);
@@ -38,8 +39,18 @@ const Detail = () => {
   const updateOpen = () => setUpdate(true);
   const updateClose = () => setUpdate(false);
 
+  const [info, setInfo] = useState({
+    title: "",
+    content: "",
+    image: "",
+    category: 0,
+    status: "p",
+  });
+
   useEffect(() => {
     getDetailData(`blogs/${id}`);
+    getBlogData("categories");
+    setInfo(details);
   }, []);
 
   return (
@@ -147,6 +158,8 @@ const Detail = () => {
                   updateClose={updateClose}
                   update={update}
                   id={id}
+                  setInfo={setInfo}
+                  info={info}
                 />
               </CardActions>
             )}

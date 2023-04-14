@@ -93,7 +93,16 @@ const useBlogCalls = () => {
 
   //edit blog
 
-  const putBlogData = async (url, id, info) => {};
+  const putBlogData = async (url, id, info) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.put(`api/${url}/${id}/`, info);
+      getDetailData(`${url}/${id}`);
+      toastSuccessNotify("succesfully updated");
+    } catch (error) {
+      toastErrorNotify(`${url} can not be updated`);
+    }
+  };
 
   return {
     getBlogData,

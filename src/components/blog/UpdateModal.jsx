@@ -9,21 +9,35 @@ import {
   TextField,
 } from "@mui/material";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import useBlogCalls from "../../hooks/useBlogCalls";
 import { modalStyle } from "../../styles/globalStyles";
 
-const UpdateModal = ({ updateOpen, updateClose, update }) => {
+const UpdateModal = ({ updateOpen, updateClose, update, info, setInfo }) => {
   const { putBlogData } = useBlogCalls();
-  const [info, setInfo] = useState();
+  const { categories } = useSelector((state) => state.blog);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInfo({ ...info, [name]: value });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+    putBlogData("blogs", info?.id, info);
+    updateClose();
   };
+  console.log(categories);
   return (
     <Modal
       open={update}
       onClose={() => {
         updateClose();
-        //setInfo({ title: "", content: "", image: "", category: 0, status:"d" })
+        setInfo({
+          title: "",
+          content: "",
+          image: "",
+          category: 0,
+          status: "d",
+        });
       }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -41,8 +55,8 @@ const UpdateModal = ({ updateOpen, updateClose, update }) => {
             type="text"
             variant="outlined"
             required
-            // value={info?.title}
-            // onChange={handleChange}
+            value={info?.title}
+            onChange={handleChange}
           />
           <TextField
             label="Image"
@@ -51,8 +65,8 @@ const UpdateModal = ({ updateOpen, updateClose, update }) => {
             type="text"
             variant="outlined"
             required
-            // value={info?.image}
-            // onChange={handleChange}
+            value={info?.image}
+            onChange={handleChange}
           />
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Categories</InputLabel>
@@ -61,16 +75,16 @@ const UpdateModal = ({ updateOpen, updateClose, update }) => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               name="category"
-              // value={info?.category}
-              // label="Categories"
-              // onChange={handleChange}
+              value={info?.category}
+              label="Categories"
+              onChange={handleChange}
             >
               <MenuItem value={0}>Select Category</MenuItem>
-              {/* {categories?.map((item, index) => (
+              {categories?.map((item, index) => (
                 <MenuItem key={index} value={item?.id}>
                   {item?.name}
                 </MenuItem>
-              ))} */}
+              ))}
             </Select>
           </FormControl>
 
@@ -81,9 +95,9 @@ const UpdateModal = ({ updateOpen, updateClose, update }) => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               name="status"
-              // value={info.status}
-              // label="Status"
-              // nChange={handleChange}
+              value={info.status}
+              label="Status"
+              onChange={handleChange}
             >
               <MenuItem value="0">Please Chose...</MenuItem>
               <MenuItem value="d">Draft</MenuItem>
@@ -100,12 +114,12 @@ const UpdateModal = ({ updateOpen, updateClose, update }) => {
             multiline
             rows={2}
             required
-            // value={info?.content}
-            // onChange={handleChange}
+            value={info?.content}
+            onChange={handleChange}
           />
 
           <Button type="submit" variant="contained">
-            Submit Firm
+            Submit
           </Button>
         </Box>
       </Box>
