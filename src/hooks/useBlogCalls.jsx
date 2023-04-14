@@ -13,16 +13,22 @@ import { useNavigate } from "react-router-dom";
 const useBlogCalls = () => {
   const dispatch = useDispatch();
 
-  const { axiosWithToken } = useAxios();
+  const { axiosWithToken, axiosPublic } = useAxios();
 
   //Blogs
 
   const getBlogData = async (url) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken(`api/${url}/`);
+      if (!url.includes("/")) {
+        const { data } = await axiosPublic(`api/${url}/`);
+        dispatch(getSuccess({ data, url }));
+      } else {
+        const { data } = await axiosWithToken(`api/${url}/`);
+        url = "myBlogs";
+        dispatch(getSuccess({ data, url }));
+      }
 
-      dispatch(getSuccess({ data, url }));
       // url.includes("/") && dispatch(getDetailSuccess({ data }));
     } catch (error) {
       dispatch(fetchFail());

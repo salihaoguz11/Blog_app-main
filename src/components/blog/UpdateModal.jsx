@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import useBlogCalls from "../../hooks/useBlogCalls";
 import { modalStyle } from "../../styles/globalStyles";
 
-const UpdateModal = ({ updateOpen, updateClose, update, info, setInfo }) => {
+const UpdateModal = ({ updateClose, update, info, setInfo }) => {
   const { putBlogData } = useBlogCalls();
   const { categories } = useSelector((state) => state.blog);
   const handleChange = (e) => {
