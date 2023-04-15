@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import useBlogCalls from "../../hooks/useBlogCalls";
 
@@ -21,7 +21,7 @@ const BlogForm = () => {
     status: "p",
     slug: "",
   });
-  const { postBlogData } = useBlogCalls();
+  const { postBlogData, getBlogData } = useBlogCalls();
   const { categories } = useSelector((state) => state.blog);
   console.log(categories);
 
@@ -41,6 +41,9 @@ const BlogForm = () => {
       slug: "",
     });
   };
+  useEffect(() => {
+    getBlogData("categories");
+  }, []);
   return (
     <Box
       sx={{

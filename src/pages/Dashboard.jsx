@@ -11,7 +11,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     getBlogData("blogs");
-    getBlogData("categories");
   }, []);
 
   //   return <BlogCard />;

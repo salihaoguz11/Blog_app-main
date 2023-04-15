@@ -20,16 +20,8 @@ const useBlogCalls = () => {
   const getBlogData = async (url) => {
     dispatch(fetchStart());
     try {
-      if (!url.includes("/")) {
-        const { data } = await axiosPublic(`api/${url}/`);
-        dispatch(getSuccess({ data, url }));
-      } else {
-        const { data } = await axiosWithToken(`api/${url}/`);
-        url = "myBlogs";
-        dispatch(getSuccess({ data, url }));
-      }
-
-      // url.includes("/") && dispatch(getDetailSuccess({ data }));
+      const { data } = await axiosPublic(`api/${url}/`);
+      dispatch(getSuccess({ data, url }));
     } catch (error) {
       dispatch(fetchFail());
     }
@@ -45,6 +37,7 @@ const useBlogCalls = () => {
       toastSuccessNotify(`${url} successfuly posted`);
     } catch (error) {
       dispatch(fetchFail());
+      console.log(error);
       toastErrorNotify(`${url} can not be posted`);
     }
   };
