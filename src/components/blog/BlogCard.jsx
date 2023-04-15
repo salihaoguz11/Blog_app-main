@@ -56,10 +56,27 @@ const BlogCard = ({ blog }) => {
         image={blog?.image}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div" align="center">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          align="center"
+          color="primary"
+        >
           {blog?.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary" align="justify">
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          align="justify"
+          sx={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: "2",
+            WebkitBoxOrient: "vertical",
+          }}
+        >
           {blog?.content}
         </Typography>
         <Typography variant="body2" align="left" color="text.secondary" mt={2}>
