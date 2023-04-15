@@ -48,6 +48,8 @@ const useBlogCalls = () => {
       toastErrorNotify(`${url} can not be posted`);
     }
   };
+
+  //get detail
   const getDetailData = async (url) => {
     dispatch(fetchStart());
     try {
