@@ -51,7 +51,7 @@ const BlogCard = ({ blog }) => {
       <CardMedia
         sx={{ padding: "1em 1em 1em 1em", objectFit: "contain" }}
         component="img"
-        alt="{blog.title"
+        alt={blog.title}
         height="140"
         image={blog?.image}
       />
