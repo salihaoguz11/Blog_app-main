@@ -63,7 +63,7 @@ SOLUTION
 
 ## Expected Outcome
 
-![Blog App](blogapp1.gif)
+![blog-app.gif](blog-app.gif)
 
 ## Objective
 
