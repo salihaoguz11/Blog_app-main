@@ -46,7 +46,6 @@ const About = () => {
         minHeight: "90vh",
         display: "flex",
         alignItems: "center",
-        alignItems: "center",
       }}
     >
       <Grid item xs={12}>
