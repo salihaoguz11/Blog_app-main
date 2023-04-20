@@ -52,7 +52,7 @@ const About = () => {
       <Grid item xs={12}>
         <Card
           sx={{
-            maxWidth: 405,
+            maxWidth: 415,
             height: "60vh",
             display: "flex",
             flexDirection: "column",
