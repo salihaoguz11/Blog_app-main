@@ -25,7 +25,7 @@ const UpdateModal = ({ updateClose, update, info, setInfo }) => {
     putBlogData("blogs", info?.id, info);
     updateClose();
   };
-  console.log(categories);
+  // console.log(categories);
   return (
     <Modal
       open={update}

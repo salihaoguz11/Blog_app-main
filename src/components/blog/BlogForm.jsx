@@ -23,7 +23,7 @@ const BlogForm = () => {
   });
   const { postBlogData, getBlogData } = useBlogCalls();
   const { categories } = useSelector((state) => state.blog);
-  console.log(categories);
+  // console.log(categories);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

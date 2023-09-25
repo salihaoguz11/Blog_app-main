@@ -32,7 +32,7 @@ const BlogCard = ({ blog }) => {
     blog?.likes_n.filter((item) => item.user_id === currentUser.id)[0] &&
     "red";
 
-  console.log(likeStatus);
+  // console.log(likeStatus);
 
   return (
     <Card
