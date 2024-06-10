@@ -29,8 +29,10 @@ const BlogCard = ({ blog }) => {
 
   const likeStatus = () =>
     currentUser &&
-    blog?.likes_n.filter((item) => item.user_id === currentUser.id)[0] &&
+    blog?.likes.filter((item) => item.user_id === currentUser.id)[0] &&
     "red";
+
+  // Dynamically format updatedAt date using moment.js
 
   // console.log(likeStatus);
 
@@ -81,7 +83,7 @@ const BlogCard = ({ blog }) => {
           {blog?.content}
         </Typography>
         <Typography variant="body2" align="left" color="text.secondary" mt={2}>
-          {new Date(blog?.publish_date).toLocaleDateString()}
+          {new Date(blog?.createdAt).toLocaleDateString()}
         </Typography>
 
         <Typography sx={{ display: "flex", alignItems: "center", mt: 2 }}>
@@ -108,7 +110,7 @@ const BlogCard = ({ blog }) => {
             onClick={() => AddLike(`likes/${blog.id}`)}
           >
             <FavoriteIcon sx={{ color: likeStatus }} />
-            <span>{blog?.likes}</span>
+            <span>{blog?.likes.length}</span>
           </IconButton>
           <IconButton>
             <ChatBubbleOutlineIcon />

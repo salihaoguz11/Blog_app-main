@@ -13,16 +13,14 @@ import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 const useAuthCall = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const BASE_URL = "https://32131.fullstack.clarusway.com/";
+  const BASE_URL = "http://127.0.0.1:8001/";
   //login----
   const login = async (userInfo) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios.post(
-        `${BASE_URL}users/auth/login/`,
-        userInfo
-      );
+      const { data } = await axios.post(`${BASE_URL}auth/login/`, userInfo);
       dispatch(loginSuccess(data));
+      console.log(data);
       toastSuccessNotify("Login performed");
       navigate(-1);
     } catch (error) {
@@ -35,12 +33,12 @@ const useAuthCall = () => {
   const logout = async () => {
     dispatch(fetchStart());
     try {
-      await axios.post(`${BASE_URL}users/auth/logout/`);
+      await axios.post(`${BASE_URL}auth/logout/`);
       dispatch(logoutSuccess());
       toastSuccessNotify("Logout performed");
       navigate("/");
     } catch (error) {
-      dispatch(fetchFail);
+      dispatch(fetchFail());
       toastErrorNotify("Logout can not be performed");
     }
   };

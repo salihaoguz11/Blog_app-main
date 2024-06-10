@@ -18,18 +18,24 @@ const Dashboard = () => {
   // export default Dashboard;
 
   return (
-    <Grid
-      container
-      spacing={2}
-      align="center"
-      sx={{ minHeight: "90vh", display: "flex", alignItems: "center" }}
-    >
-      {blogs?.map((blog) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={blog.id}>
-          <BlogCard blog={blog} />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <h1>Blogs</h1>
+      {console.log(blogs)}
+      <Grid
+        container
+        spacing={2}
+        align="center"
+        sx={{ minHeight: "90vh", display: "flex", alignItems: "center" }}
+      >
+        {blogs &&
+          blogs.result &&
+          blogs.result.map((blog) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={blog._id}>
+              <BlogCard blog={blog} />
+            </Grid>
+          ))}
+      </Grid>
+    </>
   );
 };
 export default Dashboard;

@@ -20,7 +20,7 @@ const useBlogCalls = () => {
   const getBlogData = async (url) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosPublic(`api/${url}/`);
+      const { data } = await axiosPublic(`/${url}/`);
       dispatch(getSuccess({ data, url }));
     } catch (error) {
       dispatch(fetchFail());
@@ -32,7 +32,7 @@ const useBlogCalls = () => {
   const postBlogData = async (url, info) => {
     dispatch(fetchStart());
     try {
-      await axiosWithToken.post(`api/${url}/`, info);
+      await axiosWithToken.post(`/${url}/`, info);
       getBlogData("blogs");
       toastSuccessNotify(`${url} successfuly posted`);
     } catch (error) {
@@ -46,7 +46,7 @@ const useBlogCalls = () => {
   const getDetailData = async (url) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken(`api/${url}/`);
+      const { data } = await axiosWithToken(`/${url}/`);
       dispatch(getDetailSuccess({ data }));
     } catch (error) {
       dispatch(fetchFail());
@@ -58,7 +58,7 @@ const useBlogCalls = () => {
   const AddLike = async (url) => {
     dispatch(fetchStart());
     try {
-      await axiosWithToken.post(`api/${url}/`);
+      await axiosWithToken.post(`/${url}/`);
 
       getBlogData("blogs");
     } catch (error) {
@@ -70,7 +70,7 @@ const useBlogCalls = () => {
   const addComment = async (url, data) => {
     dispatch(fetchStart());
     try {
-      await axiosWithToken.post(`api/${url}/`, data);
+      await axiosWithToken.post(`/${url}/`, data);
       getDetailData(`blogs/${data.post}`);
       toastSuccessNotify("Comment is successfuly added");
     } catch (error) {
@@ -83,7 +83,7 @@ const useBlogCalls = () => {
   const navigate = useNavigate();
   const deleteBlog = async (url) => {
     try {
-      await axiosWithToken.delete(`api/${url}`);
+      await axiosWithToken.delete(`/${url}`);
       navigate("/");
       toastSuccessNotify("Blog succesfully deleted");
     } catch (error) {
@@ -97,7 +97,7 @@ const useBlogCalls = () => {
   const putBlogData = async (url, id, info) => {
     dispatch(fetchStart());
     try {
-      await axiosWithToken.put(`api/${url}/${id}/`, info);
+      await axiosWithToken.put(`/${url}/${id}/`, info);
       getDetailData(`${url}/${id}`);
       toastSuccessNotify("succesfully updated");
     } catch (error) {

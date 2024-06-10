@@ -91,12 +91,12 @@ const BlogForm = () => {
           label="Categories"
           onChange={handleChange}
         >
-          <MenuItem value={0}>Select Category...</MenuItem>
+          {/* <MenuItem value={0}>Select Category...</MenuItem>
           {categories?.map((item, index) => (
             <MenuItem key={index} value={item?.id}>
               {item?.name}
             </MenuItem>
-          ))}
+          ))} */}
         </Select>
       </FormControl>
 

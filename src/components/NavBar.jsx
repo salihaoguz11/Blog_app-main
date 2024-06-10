@@ -12,7 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useAuthCall from "../hooks/useAuthCall";
 
@@ -57,6 +57,7 @@ const settingsPublic = [
 ];
 
 function NavBar() {
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -76,6 +77,11 @@ function NavBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  const handleLogout = () => {
+    logout();
+    handleCloseUserMenu();
+    navigate("/");
   };
 
   return (
@@ -211,7 +217,7 @@ function NavBar() {
                 ? settings.map(({ name, url }) =>
                     name === "Logout" ? (
                       <MenuItem key={name} onClick={handleCloseUserMenu}>
-                        <Button onClick={logout}>{name}</Button>
+                        <Button onClick={handleLogout}>{name}</Button>
                       </MenuItem>
                     ) : (
                       <MenuItem key={name} onClick={handleCloseUserMenu}>
