@@ -49,8 +49,10 @@ const Detail = () => {
 
   useEffect(() => {
     getDetailData(`blogs/${id}`);
+
     getBlogData("categories");
     setInfo(details);
+    console.log(details);
   }, []);
 
   return (
@@ -67,7 +69,8 @@ const Detail = () => {
             <CardMedia
               sx={{
                 objectFit: "contain",
-                maxWidth: 500,
+                maxWidth: 300,
+                mx: "auto", // center horizontally
               }}
               image={details?.image}
               component="img"
@@ -85,7 +88,7 @@ const Detail = () => {
                     {details?.author}
                   </Typography>
                   <Typography sx={{ fontSize: "0.9rem", color: "#555" }}>
-                    {new Date(details.publish_date).toDateString()}
+                    {new Date(details?.createdAt).toLocaleDateString()}
                   </Typography>
                 </Box>
               </Box>
@@ -97,17 +100,19 @@ const Detail = () => {
             <CardActions>
               <IconButton>
                 <FavoriteIcon />
-                <Typography component="span">{details?.likes}</Typography>
+                <Typography component="span">
+                  {details?.likes.length}
+                </Typography>
               </IconButton>
 
               <IconButton onClick={() => setCommentCard(!commentCard)}>
                 <CommentIcon />
-                <span>{details.comment_count}</span>
+                <span>{details?.comments.length}</span>
               </IconButton>
 
               <IconButton>
                 <VisibilityIcon />
-                <span>{details.post_views}</span>
+                <span>{details.views}</span>
               </IconButton>
             </CardActions>
 
@@ -116,15 +121,15 @@ const Detail = () => {
               <Box width="100%" mt={3} p={3}>
                 {details?.comments?.map((item, index) => (
                   <Box key={index} p={2}>
-                    <Typography>{item?.user}</Typography>
+                    <Typography>{details.userId.username}</Typography>
                     <Typography color="#aaa">
-                      {new Date(item?.time_stamp).toLocaleDateString()}
+                      {new Date(item?.createdAt).toLocaleDateString()}
                     </Typography>
-                    <Typography>{item.content}</Typography>
+                    <Typography>{item.comment}</Typography>
                     <Divider />
                   </Box>
                 ))}
-                <CommentForm postId={details.id} />
+                <CommentForm postId={details._id} />
               </Box>
             )}
 

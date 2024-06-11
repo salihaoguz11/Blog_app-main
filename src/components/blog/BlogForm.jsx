@@ -23,27 +23,32 @@ const BlogForm = () => {
   });
   const { postBlogData, getBlogData } = useBlogCalls();
   const { categories } = useSelector((state) => state.blog);
-  // console.log(categories);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(e.target);
     setInfo({ ...info, [name]: value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     postBlogData("blogs", info);
+    console.log(info);
     setInfo({
       title: "",
       content: "",
       image: "",
-      category: 0,
+      blogCategoryId: "",
       status: "p",
       slug: "",
     });
   };
   useEffect(() => {
     getBlogData("categories");
+    console.log(categories);
   }, []);
+  useEffect(() => {
+    console.log(categories);
+  }, [categories]);
   return (
     <Box
       sx={{
@@ -86,17 +91,17 @@ const BlogForm = () => {
           align="left"
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          name="category"
-          value={info?.category}
+          name="blogCategoryId"
+          value={info?.blogCategoryId}
           label="Categories"
           onChange={handleChange}
         >
-          {/* <MenuItem value={0}>Select Category...</MenuItem>
-          {categories?.map((item, index) => (
-            <MenuItem key={index} value={item?.id}>
+          <MenuItem value={0}>Select Category...</MenuItem>
+          {categories?.map((item) => (
+            <MenuItem key={item?._id} value={item?._id}>
               {item?.name}
             </MenuItem>
-          ))} */}
+          ))}
         </Select>
       </FormControl>
 
@@ -126,7 +131,7 @@ const BlogForm = () => {
         required
         multiline
         size="medium"
-        // value={item?.content}
+        value={info?.content}
         onChange={handleChange}
         rows={2}
       />

@@ -34,7 +34,7 @@ const BlogCard = ({ blog }) => {
 
   // Dynamically format updatedAt date using moment.js
 
-  // console.log(likeStatus);
+  console.log(blog);
 
   return (
     <Card
@@ -126,7 +126,7 @@ const BlogCard = ({ blog }) => {
           size="small"
           sx={butonStyle}
           variant="contained"
-          onClick={() => navigate(`/detail/${blog?.id}`)}
+          onClick={() => navigate(`/detail/${blog?._id}`)}
         >
           Read More
         </Button>

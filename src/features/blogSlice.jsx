@@ -23,11 +23,12 @@ const blogSlice = createSlice({
     // },
     getSuccess: (state, { payload: { data, url } }) => {
       state.loading = false;
-      state[url] = data;
+      state[url] = data.result;
+      // console.log(data.result);
     },
     getDetailSuccess: (state, { payload: { data } }) => {
       state.loading = false;
-      state.details = data;
+      state.details = data.result;
     },
 
     fetchFail: (state) => {

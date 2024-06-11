@@ -9,8 +9,10 @@ const CommentForm = ({ postId }) => {
   const [comment, setComment] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { post: postId, content: comment };
-    addComment(`comments/${postId}`, data);
+    const data = { blogId: postId, comment: comment };
+    console.log(data);
+    console.log(postId);
+    addComment(`comments/`, data);
     e.target.reset();
   };
 

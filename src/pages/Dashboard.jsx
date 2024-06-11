@@ -20,7 +20,6 @@ const Dashboard = () => {
   return (
     <>
       <h1>Blogs</h1>
-      {console.log(blogs)}
       <Grid
         container
         spacing={2}
@@ -28,8 +27,7 @@ const Dashboard = () => {
         sx={{ minHeight: "90vh", display: "flex", alignItems: "center" }}
       >
         {blogs &&
-          blogs.result &&
-          blogs.result.map((blog) => (
+          blogs?.map((blog) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={blog._id}>
               <BlogCard blog={blog} />
             </Grid>
